@@ -1,0 +1,19 @@
+@import "../../styles/variables.scss";
+.container {
+  color: $color-primary;
+  width: 75px;
+  user-select: none;
+}
+
+.text {
+  font-size: 32px;
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 82%;
+    left: 0;
+    border: 1px solid $color-primary;
+    width: 100%;
+  }
+}

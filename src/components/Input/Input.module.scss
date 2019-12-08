@@ -1,0 +1,19 @@
+@import "../../styles/variables.scss";
+.input {
+  border: 1px solid $color-primary;
+  width: 300px;
+  height: 31px;
+  border-radius: 5px;
+  font-size: large;
+  outline: none;
+  transition: all 0.2s;
+  padding: 2px 8px;
+  font-family: "Caveat", cursive;
+  &::placeholder {
+    font-family: "Caveat", cursive;
+  }
+  &:focus {
+    height: 30px;
+    border: 2px solid $color-primary;
+  }
+}
