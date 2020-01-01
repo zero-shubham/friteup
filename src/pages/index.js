@@ -1,10 +1,10 @@
 import React, { useState } from "react"
 import { Link } from "gatsby"
 
-import Layout from "../containers/Layout"
+import Layout from "../components/Layout"
 import Image from "../components/image"
 import SEO from "../components/seo"
-import Signup from "../containers/Signup"
+import Signup from "../components/Signup"
 import Logo from "../components/Logo"
 
 const IndexPage = () => {
