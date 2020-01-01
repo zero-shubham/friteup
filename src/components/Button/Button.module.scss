@@ -1,0 +1,29 @@
+@import "../../styles/variables.scss";
+.button {
+  text-decoration: none;
+  cursor: pointer;
+  width: fit-content;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  user-select: none;
+  font-size: 1rem;
+
+  &:hover {
+    box-shadow: 1px 1px 5px 1px rgba($color-primary, 0.8);
+  }
+  &:focus,
+  &:active {
+    box-shadow: 1px 1px 1px 1px rgba($color-primary, 0.1);
+  }
+}
+
+.primary {
+  color: white;
+  background-color: $color-primary;
+}
+
+.secondary {
+  color: $color-primary;
+  background-color: white;
+  border: 1px solid $color-primary;
+}

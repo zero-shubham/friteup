@@ -1,13 +1,17 @@
 import React, { useState } from "react"
 import { Link } from "gatsby"
-
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles"
 import Layout from "../components/Layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
 import Signup from "../components/Signup"
-import Logo from "../components/Logo"
 
 const IndexPage = () => {
+  const theme = createMuiTheme({
+    typography: {
+      // Tell Material-UI what the font-size on the html element is.
+      fontFamily: "Caveat, cursive",
+    },
+  })
   const [tmpAuth, setTmpAuth] = useState(false)
   const page = tmpAuth ? (
     <Layout>
@@ -16,7 +20,7 @@ const IndexPage = () => {
   ) : (
     <Signup />
   )
-  return page
+  return <ThemeProvider theme={theme}>{page}</ThemeProvider>
 }
 
 export default IndexPage
