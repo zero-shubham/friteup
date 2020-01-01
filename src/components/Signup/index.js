@@ -1,8 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
-import Input from "../../components/Input"
-import Button from "../../components/Button"
+import Input from "@material-ui/core/Input"
+import Button from "@material-ui/core/Button"
 import styles from "./signup.module.scss"
 
 const Signup = ({ children }) => {
