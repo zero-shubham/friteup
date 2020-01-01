@@ -5,10 +5,17 @@ import Button from "../Button"
 import Logo from "../Logo"
 import styles from "./signup.module.scss"
 import typewriter from "../../images/typewriter.svg"
+import { validateInput } from "../../common/functions"
+import { regex } from "../../common/constants"
 
 const Signup = () => {
   const [secBtnTxt, setSecBtnTxt] = useState("Sign-In")
   const [priBtnTxt, setPriBtnTxt] = useState("Sign-Up")
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [emailError, setEmailError] = useState("")
+  const [nameError, setNameError] = useState("")
 
   const secBtnOnClick = () => {
     if (secBtnTxt === "Sign-In") {
@@ -18,6 +25,7 @@ const Signup = () => {
       setSecBtnTxt("Sign-In")
       setPriBtnTxt("Sign-Up")
     }
+    setName("")
   }
 
   return (
@@ -32,10 +40,26 @@ const Signup = () => {
             <TextField
               label="Email"
               type="email"
-              error={true}
-              helperText={"Ooops!"}
+              error={!!emailError}
+              helperText={emailError}
+              value={email}
+              required={true}
+              onChange={e => {
+                if (!validateInput(e.target.value, regex.email)) {
+                  setEmailError("Please enter a valid e-mail.")
+                } else {
+                  setEmailError("")
+                }
+                setEmail(e.target.value)
+              }}
             />
-            <TextField label="Password" type="password" />
+            <TextField
+              label="Password"
+              type="password"
+              value={password}
+              required={true}
+              onChange={e => setPassword(e.target.value)}
+            />
             <TextField
               label="Name"
               className={
@@ -43,6 +67,18 @@ const Signup = () => {
                   ? styles.hide
                   : `${styles.inputComp} ${styles.show}`
               }
+              error={!!nameError}
+              helperText={nameError}
+              required={true}
+              value={name}
+              onChange={e => {
+                if (!validateInput(e.target.value, regex.name)) {
+                  setNameError("Please enter a valid name.")
+                } else {
+                  setNameError("")
+                }
+                setName(e.target.value)
+              }}
             />
             <div
               className={
