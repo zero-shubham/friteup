@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `FriteUp App`,
+    description: `A web app to write your thoughts, post them as blog and free up your mind.`,
+    author: `Shubham Biswas`,
   },
   plugins: [
     `gatsby-plugin-material-ui`,
