@@ -1,0 +1,44 @@
+@import "../../styles/variables.scss";
+.body {
+  width: 100%;
+  border: 1px solid $color-primary;
+  border-radius: 0.5rem 0 0 0.5rem;
+  padding: 1rem;
+}
+
+.topbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid $color-primary;
+  :global .MuiInputBase-input {
+    padding: 0;
+  }
+  :global .MuiInput-underline:before {
+    display: none;
+  }
+  :global .MuiInput-underline:after {
+    display: none;
+  }
+}
+
+.searchBar {
+  width: 20rem;
+  margin-bottom: 1rem;
+  outline: none;
+  border-radius: 5rem;
+  border: 1px solid $color-primary;
+  padding: 0.2rem 0.5rem;
+
+  &:active,
+  &:focus {
+    width: 22rem;
+  }
+  :global .MuiInputBase-input {
+    &:active {
+      .searchBar {
+        width: 22rem;
+      }
+    }
+  }
+}

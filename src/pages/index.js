@@ -4,6 +4,7 @@ import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles"
 import Layout from "../components/Layout"
 import SEO from "../components/seo"
 import Signup from "../components/Signup"
+import "../styles/main.scss"
 
 const IndexPage = () => {
   const theme = createMuiTheme({

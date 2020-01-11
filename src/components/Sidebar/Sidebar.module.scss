@@ -1,11 +1,7 @@
 .body {
-  width: 4rem;
-  height: 100%;
+  width: 10rem;
   display: flex;
   flex-direction: column;
-  position: absolute;
-  top: 0;
-  left: 0;
 }
 
 .content {
@@ -23,10 +19,12 @@
 .marginBottom {
   margin-bottom: 1rem;
 }
-
+.logoContent {
+  margin: 0 auto;
+}
 .svg {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 3rem;
+  height: 3rem;
   margin: 0.5rem 0;
   user-select: none;
   cursor: pointer;

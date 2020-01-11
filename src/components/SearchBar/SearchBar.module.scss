@@ -1,0 +1,20 @@
+@import "../../styles/variables.scss";
+
+.searchBar {
+  width: 20rem;
+  margin-bottom: 1rem;
+  outline: none;
+  border-radius: 5rem;
+  border: 1px solid $color-primary;
+  padding: 0.2rem 0.5rem;
+  transition: all 0.2s;
+  &:active,
+  &:focus {
+    width: 22rem;
+  }
+}
+
+.searchSvg {
+  width: 0.8rem;
+  height: 0.8rem;
+}

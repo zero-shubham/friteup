@@ -11,7 +11,9 @@ import styles from "./Sidebar.module.scss"
 const Sidebar = () => {
   return (
     <div className={styles.body}>
-      <Logo />
+      <div className={styles.logoContent}>
+        <Logo />
+      </div>
       <div className={styles.content}>
         <div className={styles.container}>
           <img src={writeSvg} alt="Write a post" className={styles.svg} />

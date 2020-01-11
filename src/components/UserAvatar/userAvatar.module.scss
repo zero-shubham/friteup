@@ -1,11 +1,13 @@
 .container {
-  height: 2rem;
-  width: 2rem;
+  height: 4rem;
+  width: 4rem;
   border-radius: 50%;
+  user-select: none;
+  cursor: pointer;
 }
 
 .image {
-  height: 2rem;
-  width: 2rem;
+  height: 100%;
+  width: 100%;
   border-radius: 50%;
 }

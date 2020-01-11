@@ -6,6 +6,7 @@
   "author": "Shubham Biswas <shubhambiswas.zero@gmail.com>",
   "dependencies": {
     "@material-ui/core": "^4.8.2",
+    "@material-ui/icons": "^4.5.1",
     "@material-ui/styles": "^4.8.2",
     "gatsby": "^2.18.17",
     "gatsby-image": "^2.2.34",

@@ -1,5 +1,11 @@
 @import url("https://fonts.googleapis.com/css?family=Caveat:400,700&display=swap&subset=latin-ext");
+@import "../../styles/main.scss";
 html {
   font-family: "Caveat", cursive;
   font-size: 20px;
+}
+
+.body {
+  display: flex;
+  height: 100vh;
 }

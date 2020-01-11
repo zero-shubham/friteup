@@ -1,7 +1,7 @@
 @import "../../styles/variables.scss";
 .container {
   color: $color-primary;
-  width: 75px;
+  width: fit-content;
   user-select: none;
 }
 
