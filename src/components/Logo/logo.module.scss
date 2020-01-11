@@ -6,7 +6,6 @@
 }
 
 .text {
-  font-size: 32px;
   position: relative;
   &::after {
     content: "";
@@ -16,4 +15,11 @@
     border: 1px solid $color-primary;
     width: 100%;
   }
+}
+.large {
+  font-size: 5rem;
+}
+
+.small {
+  font-size: 3.2rem;
 }

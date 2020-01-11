@@ -44,6 +44,7 @@ const Signup = () => {
               helperText={emailError}
               value={email}
               required={true}
+              className={styles.textField}
               onChange={e => {
                 if (!validateInput(e.target.value, regex.email)) {
                   setEmailError("Please enter a valid e-mail.")
@@ -58,14 +59,15 @@ const Signup = () => {
               type="password"
               value={password}
               required={true}
+              className={styles.textField}
               onChange={e => setPassword(e.target.value)}
             />
             <TextField
               label="Name"
               className={
                 priBtnTxt === "Sign-In"
-                  ? styles.hide
-                  : `${styles.inputComp} ${styles.show}`
+                  ? `${styles.hide} ${styles.textField}`
+                  : `${styles.inputComp} ${styles.show} ${styles.textField}`
               }
               error={!!nameError}
               helperText={nameError}

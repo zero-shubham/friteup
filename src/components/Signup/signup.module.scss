@@ -43,7 +43,7 @@
 
 .content {
   display: flex;
-  margin-top: 5rem;
+  margin-top: 8rem;
 }
 
 .leftSection,
@@ -66,16 +66,31 @@
 }
 
 .SignUpbtn {
-  font-size: 1.2rem;
+  font-size: 3rem;
+  margin-bottom: 1rem;
 }
 
 .SignInBtn {
+  font-size: 2rem;
   margin-top: 0.5rem;
   padding: 0.3rem 0.8rem;
 }
 
 .inputComp {
   display: block;
+}
+
+.textField {
+  font-size: 2rem;
+  :global .MuiInputBase-input {
+    font-size: 2rem;
+  }
+  :global .MuiFormHelperText-root {
+    font-size: 2rem;
+  }
+  :global .MuiFormLabel-root {
+    font-size: 2rem;
+  }
 }
 
 .hide {

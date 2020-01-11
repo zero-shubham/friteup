@@ -12,7 +12,7 @@ const Sidebar = () => {
   return (
     <div className={styles.body}>
       <div className={styles.logoContent}>
-        <Logo />
+        <Logo size={"small"} />
       </div>
       <div className={styles.content}>
         <div className={styles.container}>

@@ -5,7 +5,7 @@ import searchSvg from "../../images/search.svg"
 
 const SearchBar = () => {
   return (
-    <div>
+    <div className={styles.body}>
       <input className={styles.searchBar} />
       <img src={searchSvg} alt="search" className={styles.searchSvg} />
     </div>
