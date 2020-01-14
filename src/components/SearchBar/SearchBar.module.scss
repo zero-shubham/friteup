@@ -2,8 +2,10 @@
 
 .body {
   position: relative;
+  font-family: "Titillium Web", sans-serif;
 }
 .searchBar {
+  font-family: "Titillium Web", sans-serif;
   width: 30rem;
   min-height: 2.5rem;
   margin-bottom: 1rem;
@@ -15,6 +17,10 @@
   &:active,
   &:focus {
     width: 32rem;
+  }
+
+  &::placeholder {
+    font-family: "Titillium Web", sans-serif;
   }
 }
 

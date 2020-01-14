@@ -1,5 +1,6 @@
 import React from "react"
 import Logo from "../Logo"
+import ButtonWithTooltip from "../ButtonWithTooltip"
 import writeSvg from "../../images/edit.svg"
 import userSvg from "../../images/user.svg"
 import subscribedSvg from "../../images/subscribed.svg"
@@ -16,19 +17,15 @@ const Sidebar = () => {
       </div>
       <div className={styles.content}>
         <div className={styles.container}>
-          <img src={writeSvg} alt="Write a post" className={styles.svg} />
-          <img
-            src={subscribedSvg}
-            alt="Subscribed user list"
-            className={styles.svg}
-          />
-          <img src={userSvg} alt="Your profile" className={styles.svg} />
+          <ButtonWithTooltip alt="Write a post." svg={writeSvg} />
+          <ButtonWithTooltip alt="Subscribed user list." svg={subscribedSvg} />
+          <ButtonWithTooltip alt={"Your profile."} svg={userSvg} />
         </div>
         <div className={styles.container}>
           <div className={styles.marginBottom}>
             <UserAvatar image={testUser} alt="Your profile" />
           </div>
-          <img src={logoutSvg} alt="logout" className={styles.svg} />
+          <ButtonWithTooltip alt={"Logout."} svg={logoutSvg} />
         </div>
       </div>
     </div>

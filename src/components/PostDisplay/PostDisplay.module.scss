@@ -1,0 +1,41 @@
+@import "../../styles/main.scss";
+.paper {
+  margin: 2rem 4rem;
+}
+
+.topSection {
+  display: flex;
+}
+
+.details {
+  max-height: 3.5rem;
+  margin-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  font-family: "Titillium Web", sans-serif;
+}
+
+.name {
+  font-size: 2rem;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.bottomSection {
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  font-family: "Titillium Web", sans-serif;
+}
+
+.text {
+  font-style: italic;
+  line-height: 2.5rem;
+}
+
+.button {
+  margin-left: 0.5rem !important;
+}

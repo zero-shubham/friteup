@@ -1,0 +1,22 @@
+.votes {
+  display: flex;
+  width: 20rem;
+  margin-top: 2rem;
+  user-select: none;
+  justify-content: space-between;
+  :global .MuiBadge-root {
+    font-size: 2rem;
+  }
+  :global .MuiBadge-badge {
+    font-size: 1rem;
+  }
+  :global .MuiBadge-anchorOriginTopRightRectangle {
+    transform: scale(1) translate(60%, -58%);
+  }
+}
+
+.label {
+  font-family: "Titillium Web", sans-serif;
+  font-size: 1.5rem;
+  margin-left: 0.5rem;
+}

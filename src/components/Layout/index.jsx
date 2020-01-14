@@ -16,7 +16,7 @@ const Layout = ({ children }) => {
   return (
     <div className={styles.body}>
       <Sidebar />
-      <Canvas />
+      <Canvas>{children}</Canvas>
     </div>
   )
 }
