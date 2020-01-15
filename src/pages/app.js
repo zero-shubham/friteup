@@ -1,15 +1,20 @@
 import React from "react"
-import { Link } from "gatsby"
+import { Router } from "@reach/router"
 import "../styles/main.scss"
 import Layout from "../components/Layout"
 import SEO from "../components/seo"
 import PostDisplay from "../components/PostDisplay"
 
-const SecondPage = () => (
+const RenderedApp = () => (
   <Layout>
-    <SEO title="Page two" />
+    <SEO title="Welcome back to FriteUp" />
     <PostDisplay />
   </Layout>
 )
 
-export default SecondPage
+const App = () => (
+  <Router>
+    <RenderedApp path="/index" />
+  </Router>
+)
+export default App
