@@ -21,7 +21,6 @@ const PrivateRoute = props => {
   const [render, setRender] = useState(<Backdrop show={true} />)
 
   useEffect(() => {
-    console.log(loading, data, error, props.userId)
     if (!loading && data) {
       if (!data.user_validate.valid) {
         setRender("")
