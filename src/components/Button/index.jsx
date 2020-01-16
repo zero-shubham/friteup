@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "@reach/router"
 import styles from "./Button.module.scss"
 
 const Button = ({
@@ -14,9 +15,9 @@ const Button = ({
       ? `${styles.button} ${styles.primary} ${className}`
       : `${styles.button} ${styles.secondary} ${className}`
   const comp = href ? (
-    <a className={classes} href={href} target={target}>
+    <Link to={href} className={classes}>
       {children}
-    </a>
+    </Link>
   ) : (
     <div className={classes} onClick={onClick}>
       {children}

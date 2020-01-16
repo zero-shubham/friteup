@@ -23,7 +23,7 @@ const Sidebar = () => {
         </div>
         <div className={styles.container}>
           <div className={styles.marginBottom}>
-            <UserAvatar image={testUser} alt="Your profile" />
+            <UserAvatar nameInitials="I" name={"Ishaan"} />
           </div>
           <ButtonWithTooltip alt={"Logout."} svg={logoutSvg} />
         </div>

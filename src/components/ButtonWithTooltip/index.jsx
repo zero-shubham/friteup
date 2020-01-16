@@ -4,7 +4,7 @@ import Zoom from "@material-ui/core/Zoom"
 import { withStyles } from "@material-ui/core/styles"
 import styles from "./ButtonWithTooltip.module.scss"
 
-const ChangedTooltip = withStyles(theme => ({
+export const ChangedTooltip = withStyles(theme => ({
   tooltip: {
     fontSize: 10,
   },

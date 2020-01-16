@@ -1,21 +1,50 @@
-import React, { useState } from "react"
-import Input from "@material-ui/core/Input"
+import React, { useState, useEffect } from "react"
+import { navigate } from "@reach/router"
 import TextField from "@material-ui/core/TextField"
+import { gql } from "apollo-boost"
+import { useMutation } from "@apollo/react-hooks"
 import Button from "../Button"
 import Logo from "../Logo"
+import Backdrop from "../Backdrop"
 import styles from "./signup.module.scss"
 import typewriter from "../../images/typewriter.svg"
 import { validateInput } from "../../common/functions"
 import { regex } from "../../common/constants"
 
-const Signup = () => {
-  const [secBtnTxt, setSecBtnTxt] = useState("Sign-In")
-  const [priBtnTxt, setPriBtnTxt] = useState("Sign-Up")
+const SIGNUP = gql`
+  mutation CreateUser($name: String!, $email: String!, $password: String!) {
+    create_user(data: { name: $name, email: $email, password: $password }) {
+      id
+      email
+      name
+    }
+  }
+`
+const SIGNIN = gql`
+  mutation Login($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+      user {
+        id
+      }
+    }
+  }
+`
+const Signup = ({ client }) => {
+  const [secBtnTxt, setSecBtnTxt] = useState("Sign-Up")
+  const [priBtnTxt, setPriBtnTxt] = useState("Sign-In")
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [emailError, setEmailError] = useState("")
   const [nameError, setNameError] = useState("")
+  const [message, setMessage] = useState({
+    message: "",
+    type: "",
+  })
+
+  const [signUp, signUpMutationObj] = useMutation(SIGNUP)
+  const [signIn, signInMutationObj] = useMutation(SIGNIN)
+  // const [signIn, { signInData }] = useMutation()
 
   const secBtnOnClick = () => {
     if (secBtnTxt === "Sign-In") {
@@ -27,6 +56,40 @@ const Signup = () => {
     }
     setName("")
   }
+
+  const handlePrimaryBtnSubmit = async () => {
+    if (priBtnTxt === "Sign-Up") {
+      try {
+        // await response and look for error message
+        await signUp({ variables: { name, email, password } })
+        setMessage({
+          message: "You have successfully created an account!",
+          type: "success",
+        })
+        setSecBtnTxt("Sign-Up")
+        setPriBtnTxt("Sign-In")
+      } catch (error) {}
+    } else if (priBtnTxt === "Sign-In") {
+      try {
+        // await response and look for error message
+        const response = await signIn({ variables: { email, password } })
+        navigate(`/app/${response.data.login.user.id}`)
+      } catch (error) {}
+    }
+  }
+
+  // error message useEffect
+  useEffect(() => {
+    if (signInMutationObj && signInMutationObj.error) {
+      setMessage({ message: signInMutationObj.error.message, type: "error" })
+    }
+  }, [signInMutationObj.error])
+
+  useEffect(() => {
+    if (signUpMutationObj && signUpMutationObj.error) {
+      setMessage({ message: signUpMutationObj.error.message, type: "error" })
+    }
+  }, [signUpMutationObj.error])
 
   return (
     <>
@@ -90,7 +153,10 @@ const Signup = () => {
               }
             >
               <Button
-                onClick={() => console.log("clicked")}
+                onClick={e => {
+                  e.preventDefault()
+                  handlePrimaryBtnSubmit()
+                }}
                 className={styles.SignUpbtn}
               >
                 {priBtnTxt}
@@ -106,6 +172,7 @@ const Signup = () => {
           </div>
         </div>
       </div>
+      <Backdrop show={signInMutationObj.loading || signUpMutationObj.loading} />
     </>
   )
 }
