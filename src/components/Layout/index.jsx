@@ -1,21 +1,23 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
-import React from "react"
+import React, { useContext } from "react"
 import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
-import styles from "./Layout.module.scss"
+import { useQuery } from "@apollo/react-hooks"
+import { USER } from "../../services/gqlTags"
 import Sidebar from "../Sidebar"
 import Canvas from "../Canvas"
+import { Context } from "../../pages/app"
+import styles from "./Layout.module.scss"
 
 const Layout = ({ children }) => {
+  const context = useContext(Context)
+  const userId = context.userId
+
+  const { data, loading, error } = useQuery(USER, {
+    variables: { user_id: userId },
+  })
+
   return (
     <div className={styles.body}>
-      <Sidebar />
+      <Sidebar userId={userId} name={data && data.user.name} />
       <Canvas>{children}</Canvas>
     </div>
   )

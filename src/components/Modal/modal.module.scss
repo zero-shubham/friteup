@@ -1,0 +1,16 @@
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.body {
+  background-color: white;
+  min-height: 30rem;
+  min-width: 70rem;
+  outline: none;
+  padding: 2rem;
+  border-radius: 1rem;
+  font-family: "Titillium Web", sans-serif;
+  display: flex;
+}

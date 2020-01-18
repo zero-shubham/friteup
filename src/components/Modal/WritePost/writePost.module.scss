@@ -1,0 +1,30 @@
+.title {
+  font-size: 1.5rem;
+}
+
+.body {
+  flex-direction: column;
+  align-items: center;
+  :global .MuiTypography-root {
+    font-size: 1.5rem;
+  }
+  :global .MuiButton-label {
+    font-size: 1.5rem;
+  }
+}
+.input {
+  width: 100%;
+  font-size: 2rem;
+  :global .MuiInputBase-input {
+    padding: 1rem;
+    font-size: 2rem;
+    line-height: 2rem;
+  }
+
+  :global .MuiFormHelperText-root {
+    font-size: 2rem;
+  }
+  :global .MuiFormLabel-root {
+    font-size: 2rem;
+  }
+}

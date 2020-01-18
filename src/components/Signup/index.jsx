@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { navigate } from "@reach/router"
 import TextField from "@material-ui/core/TextField"
-import { gql } from "apollo-boost"
 import { useMutation } from "@apollo/react-hooks"
 import Button from "../Button"
 import Logo from "../Logo"
@@ -10,25 +9,9 @@ import styles from "./signup.module.scss"
 import typewriter from "../../images/typewriter.svg"
 import { validateInput } from "../../common/functions"
 import { regex } from "../../common/constants"
+import SnackbarMessage from "../Snackbar"
+import { SIGNUP, SIGNIN } from "../../services/gqlTags"
 
-const SIGNUP = gql`
-  mutation CreateUser($name: String!, $email: String!, $password: String!) {
-    create_user(data: { name: $name, email: $email, password: $password }) {
-      id
-      email
-      name
-    }
-  }
-`
-const SIGNIN = gql`
-  mutation Login($email: String!, $password: String!) {
-    login(email: $email, password: $password) {
-      user {
-        id
-      }
-    }
-  }
-`
 const Signup = ({ client }) => {
   const [secBtnTxt, setSecBtnTxt] = useState("Sign-Up")
   const [priBtnTxt, setPriBtnTxt] = useState("Sign-In")
@@ -44,7 +27,13 @@ const Signup = ({ client }) => {
 
   const [signUp, signUpMutationObj] = useMutation(SIGNUP)
   const [signIn, signInMutationObj] = useMutation(SIGNIN)
-  // const [signIn, { signInData }] = useMutation()
+
+  const resetMessage = () => {
+    setMessage({
+      message: "",
+      type: "",
+    })
+  }
 
   const secBtnOnClick = () => {
     if (secBtnTxt === "Sign-In") {
@@ -58,8 +47,8 @@ const Signup = ({ client }) => {
   }
 
   const handlePrimaryBtnSubmit = async () => {
-    if (priBtnTxt === "Sign-Up") {
-      try {
+    try {
+      if (priBtnTxt === "Sign-Up") {
         // await response and look for error message
         await signUp({ variables: { name, email, password } })
         setMessage({
@@ -68,13 +57,16 @@ const Signup = ({ client }) => {
         })
         setSecBtnTxt("Sign-Up")
         setPriBtnTxt("Sign-In")
-      } catch (error) {}
-    } else if (priBtnTxt === "Sign-In") {
-      try {
+      } else if (priBtnTxt === "Sign-In") {
         // await response and look for error message
         const response = await signIn({ variables: { email, password } })
         navigate(`/app/${response.data.login.user.id}`)
-      } catch (error) {}
+      }
+    } catch (error) {
+      setMessage({
+        message: error.message,
+        type: "error",
+      })
     }
   }
 
@@ -172,6 +164,12 @@ const Signup = ({ client }) => {
           </div>
         </div>
       </div>
+      <SnackbarMessage
+        show={!!message.message}
+        message={message.message}
+        type={message.type}
+        handleClose={resetMessage}
+      />
       <Backdrop show={signInMutationObj.loading || signUpMutationObj.loading} />
     </>
   )

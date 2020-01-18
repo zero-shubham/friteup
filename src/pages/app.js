@@ -12,12 +12,16 @@ const client = new ApolloClient({
   uri: "http://127.0.0.1:8081/graphql",
 })
 
+export const Context = React.createContext()
+
 const RenderedApp = ({ userId }) => {
   return (
-    <Layout>
-      <SEO title="Welcome back to FriteUp" />
-      <PostDisplay userId={userId} />
-    </Layout>
+    <Context.Provider value={{ userId }}>
+      <Layout userId={userId}>
+        <SEO title="Welcome back to FriteUp" />
+        <PostDisplay />
+      </Layout>
+    </Context.Provider>
   )
 }
 

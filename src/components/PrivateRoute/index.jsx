@@ -1,17 +1,8 @@
 import React, { useEffect, useState } from "react"
 import { Redirect, navigate } from "@reach/router"
-import { gql } from "apollo-boost"
+import { VALIDATE } from "../../services/gqlTags"
 import { useQuery } from "@apollo/react-hooks"
 import Backdrop from "../Backdrop"
-
-const VALIDATE = gql`
-  query UserValidate($user_id: ID!) {
-    user_validate(user_id: $user_id) {
-      user_id
-      valid
-    }
-  }
-`
 
 const PrivateRoute = props => {
   const userId = props.userId
