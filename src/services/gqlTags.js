@@ -36,3 +36,13 @@ export const USER = gql`
     }
   }
 `
+
+export const CREATE_POST = gql`
+  mutation CreatePost($text: String!, $title: String!) {
+    create_post(text: $text, title: $title) {
+      id
+      createdAt
+      text
+    }
+  }
+`

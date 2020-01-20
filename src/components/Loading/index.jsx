@@ -9,13 +9,13 @@ const ColorCircularProgress = withStyles({
   },
 })(CircularProgress)
 
-const Loading = ({ children, loading = false }) => {
+const Loading = ({ children, loading = false, parentClassName }) => {
   const component = loading ? (
     <div className={styles.centerLoader}>
       <ColorCircularProgress />
     </div>
   ) : (
-    <div>{children}</div>
+    <div className={parentClassName}>{children}</div>
   )
   return component
 }

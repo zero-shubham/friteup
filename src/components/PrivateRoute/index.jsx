@@ -13,14 +13,17 @@ const PrivateRoute = props => {
 
   useEffect(() => {
     if (!loading && data) {
-      if (!data.user_validate.valid) {
+      if (data.user_validate && !data.user_validate.valid) {
         setRender("")
         navigate("/sign-in")
-      } else if (data.user_validate.valid) {
+      } else if (data.user_validate && data.user_validate.valid) {
         const Component = props.component
         setRender(
           <Component path={props.path} userId={data.user_validate.user_id} />
         )
+      } else if (!data.user_validate) {
+        setRender("")
+        navigate("/sign-in")
       }
     } else if (!loading && error) {
       setRender("")

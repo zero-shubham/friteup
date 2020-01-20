@@ -1,7 +1,5 @@
 .centerLoader {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 15rem;
+  align-self: center;
+  height: 5rem;
+  margin: auto 0;
 }

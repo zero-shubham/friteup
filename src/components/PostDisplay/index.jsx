@@ -24,7 +24,7 @@ const PostDisplay = ({ userId }) => {
   return (
     <Paper elevation={2} className={styles.paper}>
       <Card className={classes.card} variant="outlined">
-        <Loading loading={true}>
+        <Loading loading={false}>
           <CardContent>
             <div className={styles.topSection}>
               <UserAvatar image={testUser} alt="Your profile" />
