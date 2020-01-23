@@ -1,0 +1,24 @@
+.body{
+  position: relative;
+  font-size: 5rem;
+}
+.edit {
+  font-size: 2rem !important;
+  position: absolute;
+  right: 1rem;
+  top: 2rem;
+  cursor: pointer;
+}
+
+.textField {
+  font-size: 2rem;
+  :global .MuiInputBase-input {
+    font-size: 2rem;
+  }
+  :global .MuiFormHelperText-root {
+    font-size: 2rem;
+  }
+  :global .MuiFormLabel-root {
+    font-size: 2rem;
+  }
+}

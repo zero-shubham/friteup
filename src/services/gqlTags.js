@@ -38,11 +38,33 @@ export const USER = gql`
 `
 
 export const CREATE_POST = gql`
-  mutation CreatePost($text: String!, $title: String!) {
-    create_post(text: $text, title: $title) {
+  mutation CreatePost($text: String!, $title: String!, $published: Boolean!) {
+    create_post(text: $text, title: $title, published: $published) {
       id
       createdAt
       text
+      published
+    }
+  }
+`
+
+export const LOGOUT = gql`
+  mutation Logout {
+    logout {
+      logged_out
+    }
+  }
+`
+
+export const UPDATE_USER = gql`
+  mutation UpdateUser($email: String, $name: String) {
+    update_user(data: {
+      name: $name,
+      email: $email
+    }){
+      name
+      email
+      night_mode
     }
   }
 `

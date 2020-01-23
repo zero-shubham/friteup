@@ -2,6 +2,12 @@
   font-size: 1.5rem;
 }
 
+.modalBody {
+  min-height: 50rem;
+  min-width: 70rem;
+  display: flex;
+}
+
 .body {
   flex-direction: column;
   align-items: center;

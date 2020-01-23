@@ -9,7 +9,7 @@ import styles from "./Layout.module.scss"
 
 const Layout = ({ children }) => {
   const context = useContext(Context)
-  const userId = context.userId
+  const userId = context ? context.userId : ""
 
   const { data, loading, error } = useQuery(USER, {
     variables: { user_id: userId },

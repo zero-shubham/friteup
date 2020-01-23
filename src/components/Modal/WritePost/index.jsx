@@ -7,6 +7,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel"
 import { useMutation } from "@apollo/react-hooks"
 import { CREATE_POST } from "../../../services/gqlTags"
 import Loading from "../../Loading"
+import Snackbar from "../../Snackbar"
 import modalStyles from "../modal.module.scss"
 import styles from "./writePost.module.scss"
 
@@ -15,10 +16,58 @@ const WritePost = ({ open, handleClose }) => {
   const [postText, setPostText] = useState("")
   const [postTitle, setPostTitle] = useState("")
   const [postPublished, setPostPublished] = useState(false)
-  console.log(createPostMutationObj)
+  const [error, setError] = useState({
+    message: "",
+    type: "",
+    show: false,
+  })
+
+  const resetError = () => {
+    setError({
+      message: "",
+      type: "",
+      show: false,
+    })
+  }
+
+  const resetAllStates = () => {
+    setPostText("")
+    setPostTitle("")
+    setPostPublished(false)
+  }
+
+  const handlePost = async () => {
+    try {
+      if (postText && postTitle) {
+        const response = await createPost({
+          variables: {
+            text: postText,
+            title: postTitle,
+            published: postPublished,
+          },
+        })
+        if (response.data.create_post && response.data.create_post.id) {
+          resetAllStates()
+          handleClose()
+        }else {
+          setError({
+            message: "Something went wrong!",
+            type: "error",
+            show: true
+          })
+        }
+      }
+    } catch (error) {
+      setError({
+        message: error.message,
+        type: "error",
+        show: true,
+      })
+    }
+  }
   return (
     <Modal open={open} onClose={handleClose} className={modalStyles.modal}>
-      <div className={`${modalStyles.body}`}>
+      <div className={`${modalStyles.body} ${styles.modalBody}`}>
         <Loading
           loading={createPostMutationObj.loading}
           parentClassName={`${styles.body}`}
@@ -50,11 +99,22 @@ const WritePost = ({ open, handleClose }) => {
               }
               label="Publish this post"
             />
-            <Button variant="contained" color="primary" className={styles.post}>
+            <Button
+              variant="contained"
+              color="primary"
+              className={styles.post}
+              onClick={handlePost}
+            >
               Post
             </Button>
           </div>
         </Loading>
+        <Snackbar
+          message={error.message}
+          type={error.type}
+          show={error.show}
+          handleClose={resetError}
+        />
       </div>
     </Modal>
   )

@@ -1,0 +1,39 @@
+.body {
+  background-color: white;
+  min-height: 40rem;
+  min-width: 50rem;
+  outline: none;
+
+  :global .MuiTextField-root{
+    width: 100%;
+  }
+
+}
+
+.content {
+  height: 40rem;
+  display: flex;
+  flex-direction: column;
+
+  :global .MuiFormControlLabel-labelPlacementStart {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  :global .MuiFormControlLabel-root{
+    justify-content: space-between;
+  }
+
+  :global .MuiFormControlLabel-label{
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+}
+.deleteBtn {
+  font-size: 1.5rem !important;
+  align-self: center;
+  margin-top: auto !important;
+}
+.deleteSvg {
+  font-size: 2rem !important;
+}

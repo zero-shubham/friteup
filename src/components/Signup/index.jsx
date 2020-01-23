@@ -60,7 +60,10 @@ const Signup = ({ client }) => {
       } else if (priBtnTxt === "Sign-In") {
         // await response and look for error message
         const response = await signIn({ variables: { email, password } })
-        navigate(`/app/${response.data.login.user.id}`)
+        console.log(response, "-->")
+        if (response.data.login.user.id) {
+          navigate(`/app/${response.data.login.user.id}`)
+        }
       }
     } catch (error) {
       setMessage({
@@ -75,13 +78,13 @@ const Signup = ({ client }) => {
     if (signInMutationObj && signInMutationObj.error) {
       setMessage({ message: signInMutationObj.error.message, type: "error" })
     }
-  }, [signInMutationObj.error])
+  }, [signInMutationObj])
 
   useEffect(() => {
     if (signUpMutationObj && signUpMutationObj.error) {
       setMessage({ message: signUpMutationObj.error.message, type: "error" })
     }
-  }, [signUpMutationObj.error])
+  }, [signUpMutationObj])
 
   return (
     <>
