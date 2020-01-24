@@ -16,6 +16,8 @@ import logoutSvg from "../../images/logout.svg"
 
 const Sidebar = ({ name }) => {
   const context = useContext(Context)
+  const userId = context ? context.userId : ""
+  
   const [logout, logoutMutationObj] = useMutation(LOGOUT)
   const [modalState, setModalState] = useState({
     WritePost: false,
@@ -60,7 +62,10 @@ const Sidebar = ({ name }) => {
         </div>
         <div className={styles.container}>
           <div className={styles.marginBottom}>
-            <UserAvatar nameInitials="I" name={"Ishaan"} />
+            <UserAvatar
+              nameInitials={name && name[0]}
+              name={name && name.split(" ")[0]}
+            />
           </div>
           <ButtonWithTooltip
             alt={"Logout."}

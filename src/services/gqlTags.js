@@ -33,6 +33,7 @@ export const USER = gql`
       id
       name
       email
+      night_mode
     }
   }
 `
@@ -57,10 +58,11 @@ export const LOGOUT = gql`
 `
 
 export const UPDATE_USER = gql`
-  mutation UpdateUser($email: String, $name: String) {
+  mutation UpdateUser($email: String, $name: String, $night_mode: Boolean) {
     update_user(data: {
       name: $name,
-      email: $email
+      email: $email,
+      night_mode: $night_mode
     }){
       name
       email

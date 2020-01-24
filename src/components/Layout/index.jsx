@@ -10,14 +10,14 @@ import styles from "./Layout.module.scss"
 const Layout = ({ children }) => {
   const context = useContext(Context)
   const userId = context ? context.userId : ""
-
   const { data, loading, error } = useQuery(USER, {
     variables: { user_id: userId },
   })
+  
 
   return (
     <div className={styles.body}>
-      <Sidebar userId={userId} name={data && data.user.name} />
+      <Sidebar name={data && data.user.name} />
       <Canvas>{children}</Canvas>
     </div>
   )

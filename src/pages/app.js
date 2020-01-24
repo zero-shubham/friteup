@@ -9,9 +9,10 @@ import "../styles/main.scss"
 export const Context = React.createContext()
 
 const RenderedApp = ({ userId }) => {
+  
   return (
     <Context.Provider value={{ userId }}>
-      <Layout userId={userId}>
+      <Layout>
         <SEO title="Welcome back to FriteUp" />
         <PostDisplay />
       </Layout>

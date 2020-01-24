@@ -60,7 +60,7 @@ const Signup = ({ client }) => {
       } else if (priBtnTxt === "Sign-In") {
         // await response and look for error message
         const response = await signIn({ variables: { email, password } })
-        console.log(response, "-->")
+        console.log("**** routing to app ****")
         if (response.data.login.user.id) {
           navigate(`/app/${response.data.login.user.id}`)
         }
