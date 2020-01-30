@@ -1,34 +1,25 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import Modal from "@material-ui/core/Modal"
 import TextField from "@material-ui/core/TextField"
 import Button from "@material-ui/core/Button"
 import Switch from "@material-ui/core/Switch"
 import FormControlLabel from "@material-ui/core/FormControlLabel"
 import { useMutation } from "@apollo/react-hooks"
-import { CREATE_POST } from "../../../services/gqlTags"
+import { USER, USER_WITH_POST } from "../../../services/queries"
+import { CREATE_POST } from "../../../services/mutations"
 import Loading from "../../Loading"
-import Snackbar from "../../Snackbar"
+import { Context } from "../../../pages/app"
 import modalStyles from "../modal.module.scss"
 import styles from "./writePost.module.scss"
 
 const WritePost = ({ open, handleClose }) => {
+  const context = useContext(Context)
+  const userId = context.userId
+  const setSnackbar = context.setRootSnakbar
   const [createPost, createPostMutationObj] = useMutation(CREATE_POST)
   const [postText, setPostText] = useState("")
   const [postTitle, setPostTitle] = useState("")
   const [postPublished, setPostPublished] = useState(false)
-  const [error, setError] = useState({
-    message: "",
-    type: "",
-    show: false,
-  })
-
-  const resetError = () => {
-    setError({
-      message: "",
-      type: "",
-      show: false,
-    })
-  }
 
   const resetAllStates = () => {
     setPostText("")
@@ -45,20 +36,31 @@ const WritePost = ({ open, handleClose }) => {
             title: postTitle,
             published: postPublished,
           },
+          refetchQueries: [
+            {
+              query: USER_WITH_POST,
+              variables: { user_id: userId },
+            },
+          ],
         })
         if (response.data.create_post && response.data.create_post.id) {
+          setSnackbar({
+            message: "Post was successful!",
+            type: "success",
+            show: true,
+          })
           resetAllStates()
           handleClose()
-        }else {
-          setError({
+        } else {
+          setSnackbar({
             message: "Something went wrong!",
             type: "error",
-            show: true
+            show: true,
           })
         }
       }
     } catch (error) {
-      setError({
+      setSnackbar({
         message: error.message,
         type: "error",
         show: true,
@@ -109,12 +111,6 @@ const WritePost = ({ open, handleClose }) => {
             </Button>
           </div>
         </Loading>
-        <Snackbar
-          message={error.message}
-          type={error.type}
-          show={error.show}
-          handleClose={resetError}
-        />
       </div>
     </Modal>
   )

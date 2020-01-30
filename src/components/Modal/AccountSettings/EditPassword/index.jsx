@@ -5,7 +5,7 @@ import DoneIcon from "@material-ui/icons/Done"
 import CloseIcon from "@material-ui/icons/Close"
 import styles from "./editPassword.module.scss"
 
-const EditPassword = () => {
+const EditPassword = ({ handleDone }) => {
   const [readOnly, setReadOnly] = useState(true)
   const [label, setLabel] = useState("Password")
   const [oldPass, setOldPass] = useState("password")
@@ -57,7 +57,13 @@ const EditPassword = () => {
           value={newPass}
           onChange={e => setNewPass(e.target.value)}
         />
-        <DoneIcon className={styles.edit} />
+        <DoneIcon
+          className={styles.edit}
+          onClick={() => {
+            handleDone({ old_password: oldPass, new_password: newPass })
+            handleCancel()
+          }}
+        />
       </div>
     </div>
   )

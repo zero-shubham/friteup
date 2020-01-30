@@ -3,11 +3,18 @@
   width: 100%;
   border: 1px solid $color-primary;
   border-radius: 0.5rem 0 0 0.5rem;
-  padding: 1rem;
+  padding: 0rem 1rem;
   box-shadow: -2px 0px 5px rgba(#0000, 0.2);
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 .topbar {
+  position: fixed;
+  z-index: 3;
+  background-color: white;
+  width: 90%;
+  padding-top: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,23 +30,6 @@
   }
 }
 
-.searchBar {
-  width: 20rem;
-  margin-bottom: 1rem;
-  outline: none;
-  border-radius: 5rem;
-  border: 1px solid $color-primary;
-  padding: 0.2rem 0.5rem;
-
-  &:active,
-  &:focus {
-    width: 22rem;
-  }
-  :global .MuiInputBase-input {
-    &:active {
-      .searchBar {
-        width: 22rem;
-      }
-    }
-  }
+.topPadding{
+  height: 5rem;
 }

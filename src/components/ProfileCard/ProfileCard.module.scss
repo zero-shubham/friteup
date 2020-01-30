@@ -1,0 +1,47 @@
+@import "../../styles/main.scss";
+.body {
+  font-family: "Titillium Web", sans-serif;
+  font-size: 1.5rem;
+  margin: 2rem 4rem;
+}
+
+.content {
+  align-self: center;
+  display: flex;
+  flex-direction: row;
+}
+.name {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: .5rem;
+}
+.photo {
+  display: flex;
+  align-items: center;
+  width: 15rem;
+  & > div {
+    margin: 0 1rem;
+  }
+}
+.details {
+  width: 100%;
+  padding-right: 2rem;
+}
+.subcribeContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 15rem;
+  margin-right: 2rem;
+}
+.subsIcon {
+  font-size: 3rem !important;
+  margin-left: 1rem;
+}
+.subscribers {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}

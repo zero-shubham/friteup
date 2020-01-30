@@ -9,7 +9,7 @@ import styles from "./vote.module.scss"
 const Vote = ({ postId, upVoteCount, downVoteCount, active }) => {
   return (
     <div className={styles.votes}>
-      <Badge badgeContent={upVoteCount}>
+      <Badge badgeContent={upVoteCount} showZero>
         {active ? (
           <ThumbUpOutlinedIcon fontSize="inherit" color={"primary"} />
         ) : (
@@ -18,7 +18,7 @@ const Vote = ({ postId, upVoteCount, downVoteCount, active }) => {
 
         <div className={styles.label}>Upvotes</div>
       </Badge>
-      <Badge badgeContent={downVoteCount}>
+      <Badge badgeContent={downVoteCount} showZero>
         {active ? (
           <ThumbDownOutlinedIcon fontSize="inherit" color={"primary"} />
         ) : (

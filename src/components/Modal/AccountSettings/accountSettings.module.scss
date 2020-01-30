@@ -1,8 +1,10 @@
 .body {
   background-color: white;
-  min-height: 40rem;
+  min-height: 46rem;
   min-width: 50rem;
   outline: none;
+  display: flex;
+  flex-direction: column;
 
   :global .MuiTextField-root{
     width: 100%;

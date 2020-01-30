@@ -9,6 +9,7 @@ const Canvas = ({ children }) => {
         {/* <input className={styles.searchBar} /> */}
         <SearchBar />
       </div>
+      <div className={styles.topPadding}/>
       {children}
     </div>
   )

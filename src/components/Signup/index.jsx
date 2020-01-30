@@ -10,7 +10,7 @@ import typewriter from "../../images/typewriter.svg"
 import { validateInput } from "../../common/functions"
 import { regex } from "../../common/constants"
 import SnackbarMessage from "../Snackbar"
-import { SIGNUP, SIGNIN } from "../../services/gqlTags"
+import { SIGNUP, SIGNIN } from "../../services/mutations"
 
 const Signup = ({ client }) => {
   const [secBtnTxt, setSecBtnTxt] = useState("Sign-Up")
@@ -60,7 +60,6 @@ const Signup = ({ client }) => {
       } else if (priBtnTxt === "Sign-In") {
         // await response and look for error message
         const response = await signIn({ variables: { email, password } })
-        console.log("**** routing to app ****")
         if (response.data.login.user.id) {
           navigate(`/app/${response.data.login.user.id}`)
         }

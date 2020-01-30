@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import TextField from "@material-ui/core/TextField"
 import EditIcon from "@material-ui/icons/Edit"
 import DoneIcon from "@material-ui/icons/Done"
@@ -13,6 +13,10 @@ const EditDetail = ({ value, label, handleDone }) => {
     setReadOnly(true)
     setDetailValue(value)
   }
+
+  useEffect(() => {
+    setDetailValue(value)
+  }, [value])
 
   return (
     <div className={styles.body}>
@@ -32,7 +36,10 @@ const EditDetail = ({ value, label, handleDone }) => {
         <div className={styles.btnContainer}>
           <DoneIcon
             className={styles.done}
-            onClick={() => handleDone(detailValue)}
+            onClick={() => {
+              handleDone(detailValue)
+              handleCancel()
+            }}
           />
           <CloseIcon className={styles.close} onClick={handleCancel} />
         </div>

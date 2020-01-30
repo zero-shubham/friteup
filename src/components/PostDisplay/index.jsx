@@ -1,14 +1,14 @@
-import React from "react"
+import React, { useState } from "react"
 import Card from "@material-ui/core/Card"
 import Paper from "@material-ui/core/Paper"
 import { makeStyles } from "@material-ui/core/styles"
 import CardContent from "@material-ui/core/CardContent"
 import Button from "@material-ui/core/Button"
+import Modal from "@material-ui/core/Modal"
 import UserAvatar from "../UserAvatar"
 import Loading from "../Loading"
 import Vote from "../Vote"
 import styles from "./PostDisplay.module.scss"
-import testUser from "../../images/test.jpg"
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -18,7 +18,8 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const PostDisplay = ({ userId }) => {
+const PostDisplay = ({ name, title, text, upVotes, downVotes }) => {
+  const [modalOpen, setModalOpen] = useState(false)
   // const [userIdState, setUserId] = useState(userId)
   const classes = useStyles()
   return (
@@ -27,26 +28,22 @@ const PostDisplay = ({ userId }) => {
         <Loading loading={false}>
           <CardContent>
             <div className={styles.topSection}>
-              <UserAvatar image={testUser} alt="Your profile" />
+              <UserAvatar alt="Your profile" />
               <div className={styles.details}>
-                <div className={styles.name}>Full Name</div>
-                <div className={styles.title}>Heading for the post.</div>
+                <div className={styles.name}>{name}</div>
+                <div className={styles.title}>{title}</div>
               </div>
             </div>
             <div className={styles.bottomSection}>
               <div className={styles.text}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia
-                illo quisquam sed doloremque earum ducimus blanditiis doloribus
-                culpa in dolorem quam animi modi alias, aperiam corrupti
-                repellendus laboriosam explicabo corporis? Lorem ipsum dolor sit
-                amet consectetur adipisicing elit. Officia illo quisquam sed
-                doloremque earum ducimus blanditiis...
+                {text.length > 346 ? `${text.slice(0, 346)}...` : text}
                 <Button variant="contained" className={styles.button}>
                   Read More
                 </Button>
               </div>
             </div>
-            <Vote upVoteCount={3} downVoteCount={1} />
+            <Vote upVoteCount={upVotes} downVoteCount={downVotes} />
+            <Modal open={modalOpen} />
           </CardContent>
         </Loading>
       </Card>

@@ -1,12 +1,14 @@
 import React, { useState, useContext } from "react"
 import { useMutation } from "@apollo/react-hooks"
 import { navigate } from "@reach/router"
-import { LOGOUT } from "../../services/gqlTags"
+import { LOGOUT } from "../../services/mutations"
 import Logo from "../Logo"
 import ButtonWithTooltip from "../ButtonWithTooltip"
 import WritePost from "../Modal/WritePost/index"
 import AccountSettings from "../Modal/AccountSettings/index"
 import UserAvatar from "../UserAvatar"
+import UserNameAvatar from "../UserNameAvatar"
+import ProfileView from "../ProfileView"
 import { Context } from "../../pages/app"
 import styles from "./Sidebar.module.scss"
 import writeSvg from "../../images/edit.svg"
@@ -17,7 +19,7 @@ import logoutSvg from "../../images/logout.svg"
 const Sidebar = ({ name }) => {
   const context = useContext(Context)
   const userId = context ? context.userId : ""
-  
+  const setView = context.setView
   const [logout, logoutMutationObj] = useMutation(LOGOUT)
   const [modalState, setModalState] = useState({
     WritePost: false,
@@ -62,9 +64,12 @@ const Sidebar = ({ name }) => {
         </div>
         <div className={styles.container}>
           <div className={styles.marginBottom}>
-            <UserAvatar
+            <UserNameAvatar
               nameInitials={name && name[0]}
               name={name && name.split(" ")[0]}
+              onClick={() => {
+                setView(<ProfileView userId={userId} />)
+              }}
             />
           </div>
           <ButtonWithTooltip

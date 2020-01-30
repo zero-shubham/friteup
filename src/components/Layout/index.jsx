@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
 import PropTypes from "prop-types"
 import { useQuery } from "@apollo/react-hooks"
-import { USER } from "../../services/gqlTags"
+import { USER } from "../../services/queries"
 import Sidebar from "../Sidebar"
 import Canvas from "../Canvas"
 import { Context } from "../../pages/app"

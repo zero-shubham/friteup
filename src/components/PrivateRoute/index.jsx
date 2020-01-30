@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { navigate } from "@reach/router"
-import { VALIDATE } from "../../services/gqlTags"
+import { VALIDATE } from "../../services/queries"
 import { useQuery } from "@apollo/react-hooks"
 import Backdrop from "../Backdrop"
 
