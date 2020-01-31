@@ -13,7 +13,6 @@ const ProfileView = ({ userId }) => {
     },
   })
   useEffect(() => {
-    console.log("data...", data)
     if (data) {
       const postsDisplay = data.user.posts.map((post, idx) => (
         <PostDisplay

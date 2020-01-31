@@ -21,6 +21,20 @@ export const USER = gql`
   }
 `
 
+export const USERS = gql`
+  query Users($user_ids: [ID]) {
+    users(user_ids: $user_ids) {
+      id
+      name
+      email
+      bio
+      subscribers {
+        id
+      }
+    }
+  }
+`
+
 export const USER_WITH_POST = gql`
   query User($user_id: ID!) {
     user(user_id: $user_id) {
@@ -47,6 +61,36 @@ export const USER_WITH_POST = gql`
             name
           }
         }
+      }
+    }
+  }
+`
+export const SEARCH = gql`
+  query Search($keyword: String!) {
+    search(keyword: $keyword) {
+      users {
+        id
+        name
+        email
+        bio
+        subscribers {
+          id
+        }
+      }
+      posts {
+        id
+        user {
+          id
+          name
+          bio
+          subscribers {
+            id
+          }
+        }
+        text
+        title
+        up_vote
+        down_vote
       }
     }
   }

@@ -4,8 +4,7 @@ import PrivateRoute from "../components/PrivateRoute"
 import Layout from "../components/Layout"
 import SEO from "../components/seo"
 import Snackbar from "../components/Snackbar"
-import ProfileView from "../components/ProfileView"
-import PostDisplay from "../components/PostDisplay"
+import Loading from "../components/Loading"
 import "../styles/main.scss"
 
 export const Context = React.createContext()
@@ -16,6 +15,8 @@ const RenderApp = ({ userId }) => {
     type: "",
     show: false,
   })
+  const [rootLoading, setRootLoading] = useState(false)
+
   const resetRootSnackbar = () => {
     setRootSnakbar({
       message: "",
@@ -23,18 +24,20 @@ const RenderApp = ({ userId }) => {
       show: false,
     })
   }
-  const [view, setView] = useState();
+  const [view, setView] = useState()
   return (
-    <Context.Provider value={{ userId, setRootSnakbar, setView }}>
+    <Context.Provider
+      value={{ userId, setRootSnakbar, setView, setRootLoading }}
+    >
       <Layout>
         <SEO title="Welcome back to FriteUp" />
-        {/* <div>
-          <PostDisplay />
-          <PostDisplay />
-          <PostDisplay />
-          <PostDisplay />
-        </div> */}
-        {view}
+
+        <Loading
+          loading={rootLoading}
+          parentClassName={rootLoading ? "rootLoader" : ""}
+        >
+          {view}
+        </Loading>
         {rootSnakbar.show && (
           <Snackbar
             show={rootSnakbar.show}

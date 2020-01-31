@@ -1,0 +1,16 @@
+.body {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.tabBar {
+  width: 50%;
+  align-self: center;
+  justify-self: center;
+}
+
+.container {
+  min-height: 40rem;
+  margin-top: 5rem;
+}

@@ -17,6 +17,7 @@
   border: 1px solid $color-primary;
   padding: 0.2rem 1rem;
   transition: all 0.2s;
+  
   &:active,
   &:focus {
     width: 32rem;
@@ -33,4 +34,5 @@
   position: absolute;
   top: 0.5rem;
   right: 1rem;
+  cursor: pointer;
 }

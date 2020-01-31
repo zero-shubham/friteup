@@ -9,3 +9,10 @@ body {
   margin: 0;
   padding: 0;
 }
+
+.rootLoader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
