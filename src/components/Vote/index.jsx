@@ -22,7 +22,6 @@ const Vote = ({
 
   const searchContext = useContext(SearchContext)
   const searchRefetch = searchContext ? searchContext.refetch : null
-  const searchKeyword = searchContext ? searchContext.keyword : null
 
   const userId = context.userId
   const [voteType, setVoteType] = useState()
@@ -54,7 +53,7 @@ const Vote = ({
         },
       ],
     })
-    if (searchRefetch && searchKeyword) {
+    if (searchRefetch) {
       searchRefetch()
     }
     setVoteType("")

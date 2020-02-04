@@ -50,7 +50,6 @@ const ProfileCard = ({
 
   const searchContext = useContext(SearchContext)
   const searchRefetch = searchContext ? searchContext.refetch : null
-  const searchKeyword = searchContext ? searchContext.keyword : null
 
   const userId = context.userId
   const classes = useStyles()
@@ -102,7 +101,7 @@ const ProfileCard = ({
   )
 
   useEffect(() => {
-    if (searchRefetch && searchKeyword) {
+    if (searchRefetch ) {
       searchRefetch()
     }
   }, [unSubscribeUserMutationObj.data, subscribeUserMutaionObj.data])

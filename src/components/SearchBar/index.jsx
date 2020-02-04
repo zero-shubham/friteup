@@ -14,12 +14,14 @@ const SearchBar = () => {
   const setRootSnakbar = context.setRootSnakbar
   const [value, setValue] = useState("")
   const [lastKeyword, setLastKeyword] = useState("")
-  const [search, searchQueryObj] = useLazyQuery(SEARCH)
+  const [search, searchQueryObj] = useLazyQuery(SEARCH, {
+    fetchPolicy: "no-cache",
+  })
   const { refetch } = searchQueryObj
 
-  const initSearch = () => {
+  const initSearch = async () => {
     if (value) {
-      search({
+      await search({
         variables: {
           keyword: value,
         },

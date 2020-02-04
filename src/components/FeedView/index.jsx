@@ -11,7 +11,9 @@ const FeedView = () => {
   const context = useContext(Context)
   const setRootSnakbar = context.setRootSnakbar
 
-  const { data, loading, error } = useQuery(FEED)
+  const { data, loading, error } = useQuery(FEED, {
+    pollInterval: 3600
+  })
   const [renderPosts, setRenderPosts] = useState()
   useEffect(() => {
     if (error) {
