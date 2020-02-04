@@ -83,3 +83,9 @@ export const VOTE_POST = gql`
     }
   }
 `
+
+export const DELETE_USER = gql`
+  mutation DeleteUser{
+    delete_user
+  }
+`

@@ -13,6 +13,8 @@ const SubscribedList = ({ open, handleClose }) => {
   const context = useContext(Context)
   const userId = context.userId
   const setView = context.setView
+  const darkMode = context.darkMode
+
   const [subscribedUsers, setSubscribedUsers] = useState([])
   const [renderList, setRenderList] = useState([])
 
@@ -32,7 +34,7 @@ const SubscribedList = ({ open, handleClose }) => {
   useEffect(() => {
     if (data && data.user.subscribed.length) {
       setSubscribedUsers(data.user.subscribed)
-    }else{
+    } else {
       setRenderList([])
     }
   }, [data])
@@ -62,10 +64,19 @@ const SubscribedList = ({ open, handleClose }) => {
       setRenderList(tmp)
     }
   }, [getSubscribedUsersObj.data])
+
+  const modalBodyClasses = `${modalStyles.body} ${styles.modalBody}`
+
   return (
     <Modal open={open} onClose={handleClose} className={modalStyles.modal}>
-      <div className={`${styles.body} ${modalStyles.body}`}>
-        <Loading loading={loading}>{renderList.length ? renderList : ""}</Loading>
+      <div
+        className={
+          darkMode ? `${modalBodyClasses} ${styles.dark}` : modalBodyClasses
+        }
+      >
+        <Loading loading={loading}>
+          {renderList.length ? renderList : ""}
+        </Loading>
       </div>
     </Modal>
   )

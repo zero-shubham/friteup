@@ -15,6 +15,7 @@ import styles from "./writePost.module.scss"
 const WritePost = ({ open, handleClose }) => {
   const context = useContext(Context)
   const userId = context.userId
+  const darkMode = context.darkMode
   const setSnackbar = context.setRootSnakbar
   const [createPost, createPostMutationObj] = useMutation(CREATE_POST)
   const [postText, setPostText] = useState("")
@@ -42,8 +43,8 @@ const WritePost = ({ open, handleClose }) => {
               variables: { user_id: userId },
             },
             {
-              query: FEED
-            }
+              query: FEED,
+            },
           ],
         })
         if (response.data.create_post && response.data.create_post.id) {
@@ -70,9 +71,15 @@ const WritePost = ({ open, handleClose }) => {
       })
     }
   }
+
+  const modalBodyClasses = `${modalStyles.body} ${styles.modalBody}`
   return (
     <Modal open={open} onClose={handleClose} className={modalStyles.modal}>
-      <div className={`${modalStyles.body} ${styles.modalBody}`}>
+      <div
+        className={
+          darkMode ? `${modalBodyClasses} ${styles.dark}` : modalBodyClasses
+        }
+      >
         <Loading
           loading={createPostMutationObj.loading}
           parentClassName={`${styles.body}`}

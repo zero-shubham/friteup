@@ -2,12 +2,24 @@
   margin-top: 2rem;
   display: flex;
   flex-direction: column;
+  padding: 2rem 1rem;
+}
+.dark {
+  background-color: #737373 !important;
+}
+
+.dark2 {
+  background-color: #595959 !important;
 }
 
 .tabBar {
   width: 50%;
   align-self: center;
   justify-self: center;
+
+  :global .MuiButtonBase-root{
+    background-color: #cacaca !important;
+  }
 }
 
 .container {

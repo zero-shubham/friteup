@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import Card from "@material-ui/core/Card"
 import Paper from "@material-ui/core/Paper"
 import { makeStyles } from "@material-ui/core/styles"
@@ -8,6 +8,7 @@ import ReadMore from "../Modal/ReadMore/index"
 import UserAvatar from "../UserAvatar"
 import Loading from "../Loading"
 import Vote from "../Vote"
+import { Context } from "../../pages/app"
 import styles from "./PostDisplay.module.scss"
 
 const useStyles = makeStyles(theme => ({
@@ -15,6 +16,9 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     flexDirection: "column",
     minHeight: "15rem",
+  },
+  dark: {
+    backgroundColor: "#cacaca",
   },
 }))
 
@@ -27,7 +31,8 @@ const PostDisplay = ({
   thisUserId,
   postId,
 }) => {
-  
+  const context = useContext(Context)
+  const darkMode = context.darkMode
 
   const [modalOpen, setModalOpen] = useState(false)
   const resetModalOpen = () => {
@@ -42,7 +47,13 @@ const PostDisplay = ({
   return (
     <div className={styles.wrapper}>
       <Paper elevation={2} className={styles.paper}>
-        <Card className={classes.card} variant="outlined" onClick={openModal}>
+        <Card
+          className={
+            darkMode ? `${classes.card} ${classes.dark}` : classes.card
+          }
+          variant="outlined"
+          onClick={openModal}
+        >
           <Loading loading={false}>
             <CardContent>
               <div className={styles.topSection}>

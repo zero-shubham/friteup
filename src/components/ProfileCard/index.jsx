@@ -27,6 +27,9 @@ const useStyles = makeStyles(theme => ({
   large: {
     minHeight: "15rem",
   },
+  dark: {
+    backgroundColor: "#cacaca",
+  },
 }))
 
 const StyledBadge = withStyles(theme => ({
@@ -47,7 +50,7 @@ const ProfileCard = ({
   onClick,
 }) => {
   const context = useContext(Context)
-
+  const darkMode = context.darkMode
   const searchContext = useContext(SearchContext)
   const searchRefetch = searchContext ? searchContext.refetch : null
 
@@ -101,18 +104,20 @@ const ProfileCard = ({
   )
 
   useEffect(() => {
-    if (searchRefetch ) {
+    if (searchRefetch) {
       searchRefetch()
     }
   }, [unSubscribeUserMutationObj.data, subscribeUserMutaionObj.data])
-
+  const cardClasses = darkMode
+    ? `${classes.dark} ${classes.card}`
+    : classes.card
   return (
     <Paper elevation={2} className={styles.body}>
       <Card
         className={
           size === "small"
-            ? `${classes.card} ${classes.small}`
-            : `${classes.card} ${classes.large}`
+            ? `${cardClasses} ${classes.small}`
+            : `${cardClasses} ${classes.large}`
         }
         variant="outlined"
       >

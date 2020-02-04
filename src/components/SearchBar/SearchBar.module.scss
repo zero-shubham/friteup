@@ -1,10 +1,12 @@
 @import "../../styles/variables.scss";
 
+.dark {
+  background-color: #cacaca;
+}
 .body {
   position: relative;
   font-family: "Titillium Web", sans-serif;
   user-select: none;
-  
 }
 .searchBar {
   font-family: "Titillium Web", sans-serif;
@@ -13,11 +15,11 @@
   margin-bottom: 1rem;
   outline: none;
   border-radius: 5rem;
-  box-shadow: 0px 1.5px 3px 1px rgba(#000000, .1);
+  box-shadow: 0px 1.5px 3px 1px rgba(#000000, 0.1);
   border: 1px solid $color-primary;
   padding: 0.2rem 1rem;
   transition: all 0.2s;
-  
+
   &:active,
   &:focus {
     width: 32rem;

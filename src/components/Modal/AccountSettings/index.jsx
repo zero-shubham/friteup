@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from "react"
+import { navigate } from "@reach/router"
 import Modal from "@material-ui/core/Modal"
 import Button from "@material-ui/core/Button"
 import Switch from "@material-ui/core/Switch"
@@ -6,11 +7,16 @@ import FormControlLabel from "@material-ui/core/FormControlLabel"
 import DeleteIcon from "@material-ui/icons/Delete"
 import { useMutation, useQuery } from "@apollo/react-hooks"
 import { USER, USER_WITH_POST } from "../../../services/queries"
-import { CHANGE_PASSWORD, UPDATE_USER } from "../../../services/mutations"
+import {
+  CHANGE_PASSWORD,
+  UPDATE_USER,
+  DELETE_USER,
+} from "../../../services/mutations"
 import Loading from "../../Loading"
 import EditDetail from "./EditDetail"
 import EditPassword from "./EditPassword"
 import { Context } from "../../../pages/app"
+import { client } from "../../../apollo/client"
 import modalStyles from "../modal.module.scss"
 import styles from "./accountSettings.module.scss"
 
@@ -19,6 +25,7 @@ const AccountSettings = ({ open, handleClose }) => {
   const context = useContext(Context)
   const userId = context.userId
   const setSnackbar = context.setRootSnakbar
+  const darkMode = context.darkMode
 
   const { data, loading, error, refetch } = useQuery(USER, {
     variables: { user_id: userId },
@@ -28,6 +35,8 @@ const AccountSettings = ({ open, handleClose }) => {
   const [changePassword, changePasswordMutationObj] = useMutation(
     CHANGE_PASSWORD
   )
+  const [deleteUser, deleteUserMutationObj] = useMutation(DELETE_USER)
+
   const handleUpdateUserSubmit = async (_type, value) => {
     const resp = await updateUser({
       variables: { [_type]: value },
@@ -68,6 +77,20 @@ const AccountSettings = ({ open, handleClose }) => {
     }
   }
 
+  const handleDeleteUser = async () => {
+    const done = await deleteUser()
+    if (done && done.data && done.data.delete_user) {
+      client.cache.reset()
+      navigate("/")
+    } else {
+      setSnackbar({
+        message: "Couldn't delete the user",
+        show: true,
+        type: "error",
+      })
+    }
+  }
+
   useEffect(() => {
     if (error) {
       setSnackbar({
@@ -90,17 +113,31 @@ const AccountSettings = ({ open, handleClose }) => {
         type: "error",
       })
     }
-  }, [error, updateUserMutationObj.error, changePasswordMutationObj.error])
+  }, [
+    error,
+    updateUserMutationObj.error,
+    changePasswordMutationObj.error,
+    deleteUserMutationObj.error,
+  ])
+
+  const modalBodyClasses = `${modalStyles.body} ${styles.modalBody}`
+
   return (
     <Modal open={open} onClose={handleClose} className={modalStyles.modal}>
-      <div className={`${styles.body} ${modalStyles.body}`}>
+      <div
+        className={
+          darkMode ? `${modalBodyClasses} ${styles.dark}` : modalBodyClasses
+        }
+      >
         <Loading
           loading={
             updateUserMutationObj.loading ||
             changePasswordMutationObj.loading ||
             loading
           }
-          parentClassName={styles.body}
+          parentClassName={
+            darkMode ? `${styles.body} ${styles.dark}` : styles.body
+          }
         >
           <div className={styles.content}>
             <EditDetail
@@ -136,6 +173,7 @@ const AccountSettings = ({ open, handleClose }) => {
               variant="contained"
               color="secondary"
               className={styles.deleteBtn}
+              onClick={handleDeleteUser}
             >
               Delete Account
               <DeleteIcon className={styles.deleteSvg} />

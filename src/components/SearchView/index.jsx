@@ -12,6 +12,8 @@ const SearchView = ({ users, posts, refetch }) => {
   const context = useContext(Context)
   const userId = context.userId
   const setView = context.setView
+  const darkMode = context.darkMode
+
   const [tabState, setState] = useState("users")
   const [views, setViews] = useState({
     users: [],
@@ -59,7 +61,7 @@ const SearchView = ({ users, posts, refetch }) => {
   }, [posts])
 
   return (
-    <div className={styles.body}>
+    <div className={darkMode ? `${styles.body} ${styles.dark}` : styles.body}>
       <Paper className={styles.tabBar} square>
         <Tabs
           indicatorColor="primary"
@@ -72,7 +74,13 @@ const SearchView = ({ users, posts, refetch }) => {
           <Tab label="Posts" value={"posts"} />
         </Tabs>
       </Paper>
-      <Paper className={styles.container}>{views[tabState]}</Paper>
+      <Paper
+        className={
+          darkMode ? `${styles.container} ${styles.dark2}` : styles.container
+        }
+      >
+        {views[tabState]}
+      </Paper>
     </div>
   )
 }

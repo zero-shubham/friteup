@@ -1,11 +1,13 @@
 import React, { useState } from "react"
 import { Router } from "@reach/router"
+import { useQuery } from "@apollo/react-hooks"
 import PrivateRoute from "../components/PrivateRoute"
 import Layout from "../components/Layout"
 import SEO from "../components/seo"
 import Snackbar from "../components/Snackbar"
 import FeedView from "../components/FeedView"
 import Loading from "../components/Loading"
+import { USER } from "../services/queries"
 import "../styles/main.scss"
 
 export const Context = React.createContext()
@@ -16,7 +18,11 @@ const RenderApp = ({ userId }) => {
     type: "",
     show: false,
   })
-  const [view, setView] = useState(<FeedView/>)
+
+  const { data, loading, error } = useQuery(USER, {
+    variables: { user_id: userId }
+  })
+  const [view, setView] = useState(<FeedView />)
   const [rootLoading, setRootLoading] = useState(false)
 
   const resetRootSnackbar = () => {
@@ -26,10 +32,16 @@ const RenderApp = ({ userId }) => {
       show: false,
     })
   }
-  
+
   return (
     <Context.Provider
-      value={{ userId, setRootSnakbar, setView, setRootLoading }}
+      value={{
+        userId,
+        setRootSnakbar,
+        setView,
+        setRootLoading,
+        darkMode: data && data.user.night_mode,
+      }}
     >
       <Layout>
         <SEO title="Welcome back to FriteUp" />

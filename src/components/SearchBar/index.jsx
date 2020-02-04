@@ -7,7 +7,7 @@ import styles from "./SearchBar.module.scss"
 import searchSvg from "../../images/search.svg"
 
 export const SearchContext = createContext()
-const SearchBar = () => {
+const SearchBar = ({darkMode}) => {
   const context = useContext(Context)
   const setView = context.setView
   const setRootLoading = context.setRootLoading
@@ -67,7 +67,7 @@ const SearchBar = () => {
   return (
     <div className={styles.body}>
       <input
-        className={styles.searchBar}
+        className={ darkMode ? `${styles.searchBar} ${styles.dark}` :styles.searchBar}
         value={value}
         onChange={e => setValue(e.target.value)}
       />

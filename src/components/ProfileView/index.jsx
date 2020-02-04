@@ -10,6 +10,8 @@ import styles from "./ProfileView.module.scss"
 const ProfileView = ({ userId }) => {
   const context = useContext(Context)
   const currentUserId = context.userId
+  const darkMode = context.darkMode
+
   const [postsRender, setPostsRender] = useState()
   const { data, loading, error } = useQuery(USER_WITH_POST, {
     variables: {
@@ -35,7 +37,7 @@ const ProfileView = ({ userId }) => {
     }
   }, [data])
   return (
-    <Paper className={styles.body}>
+    <Paper className={darkMode ? `${styles.body} ${styles.dark}` : styles.body}>
       <ProfileCard
         name={data && data.user.name}
         bio={data && data.user.bio}

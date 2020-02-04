@@ -13,12 +13,17 @@ const Layout = ({ children }) => {
   const { data, loading, error } = useQuery(USER, {
     variables: { user_id: userId },
   })
-  
 
   return (
-    <div className={styles.body}>
+    <div
+      className={
+        data && data.user.night_mode
+          ? `${styles.body} ${styles.dark}`
+          : styles.body
+      }
+    >
       <Sidebar name={data && data.user.name} />
-      <Canvas>{children}</Canvas>
+      <Canvas darkMode={data && data.user.night_mode}>{children}</Canvas>
     </div>
   )
 }

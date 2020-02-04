@@ -15,7 +15,7 @@ import styles from "./Sidebar.module.scss"
 import writeSvg from "../../images/edit.svg"
 import feedSvg from "../../images/feed.svg"
 import cogSvg from "../../images/cog.svg"
-import {client} from "../../apollo/client"
+import { client } from "../../apollo/client"
 import subscribedSvg from "../../images/subscribed.svg"
 import logoutSvg from "../../images/logout.svg"
 
