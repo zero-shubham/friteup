@@ -20,3 +20,10 @@
   font-size: 1.5rem;
   margin-left: 0.5rem;
 }
+
+.thumbUpInactive, .thumbDownInactive{
+  cursor: pointer;
+  &:hover{
+    color: #3f51b5
+  }
+}

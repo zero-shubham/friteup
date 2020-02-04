@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react"
+import React, { useState, useContext, useEffect, createContext } from "react"
 import { useLazyQuery } from "@apollo/react-hooks"
 import { SEARCH } from "../../services/queries"
 import { Context } from "../../pages/app"
@@ -6,40 +6,59 @@ import SearchView from "../SearchView"
 import styles from "./SearchBar.module.scss"
 import searchSvg from "../../images/search.svg"
 
+export const SearchContext = createContext()
 const SearchBar = () => {
   const context = useContext(Context)
   const setView = context.setView
   const setRootLoading = context.setRootLoading
   const setRootSnakbar = context.setRootSnakbar
   const [value, setValue] = useState("")
-  const [search, searchQueryObj] = useLazyQuery(SEARCH, {
-    variables: {
-      keyword: value,
-    },
-    fetchPolicy: "no-cache",
-  })
+  const [lastKeyword, setLastKeyword] = useState("")
+  const [search, searchQueryObj] = useLazyQuery(SEARCH)
+  const { refetch } = searchQueryObj
+
+  const initSearch = () => {
+    if (value) {
+      search({
+        variables: {
+          keyword: value,
+        },
+      })
+    } else if (lastKeyword) {
+      search({
+        variables: {
+          keyword: lastKeyword,
+        },
+      })
+    }
+  }
 
   useEffect(() => {
     setRootLoading(searchQueryObj.loading)
   }, [searchQueryObj.loading])
 
   useEffect(() => {
-    if (searchQueryObj && searchQueryObj.data) {
+    if (searchQueryObj && searchQueryObj.data && searchQueryObj.data.search) {
+      setLastKeyword(value)
       setView(
-        <SearchView
-          users={searchQueryObj.data.search.users}
-          posts={searchQueryObj.data.search.posts}
-        />
+        <SearchContext.Provider value={{ refetch, keyword: lastKeyword }}>
+          <SearchView
+            users={searchQueryObj.data.search.users}
+            posts={searchQueryObj.data.search.posts}
+            refetch={searchQueryObj.refetch}
+          />
+        </SearchContext.Provider>
       )
+      setValue("")
     }
   }, [searchQueryObj.data])
 
   useEffect(() => {
-    if(searchQueryObj && searchQueryObj.error){
+    if (searchQueryObj && searchQueryObj.error) {
       setRootSnakbar({
         message: searchQueryObj.error.message,
         type: "error",
-        show: true
+        show: true,
       })
     }
   }, [searchQueryObj.error])
@@ -54,7 +73,7 @@ const SearchBar = () => {
         src={searchSvg}
         alt="search"
         className={styles.searchSvg}
-        onClick={search}
+        onClick={initSearch}
       />
     </div>
   )

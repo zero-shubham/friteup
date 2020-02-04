@@ -1,12 +1,17 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import Paper from "@material-ui/core/Paper"
 import Tabs from "@material-ui/core/Tabs"
 import Tab from "@material-ui/core/Tab"
+import ProfileView from "../ProfileView"
 import ProfileCard from "../ProfileCard"
 import PostDisplay from "../PostDisplay"
+import { Context } from "../../pages/app"
 import styles from "./SearchView.module.scss"
 
-const SearchView = ({ users, posts }) => {
+const SearchView = ({ users, posts, refetch }) => {
+  const context = useContext(Context)
+  const userId = context.userId
+  const setView = context.setView
   const [tabState, setState] = useState("users")
   const [views, setViews] = useState({
     users: [],
@@ -21,17 +26,22 @@ const SearchView = ({ users, posts }) => {
     const tmp = users.map((user, idx) => (
       <ProfileCard
         name={user.name}
-        subsCount={0}
+        subsCount={user.subscribers.length}
         bio={user.bio}
         key={idx}
-        subBtn={true}
+        showSubBtn={true}
+        subStatus={!user.subscribers.includes(userId)}
+        thisUserId={user.id}
+        profileLink={true}
+        onClick={() => {
+          setView(<ProfileView userId={user.id} />)
+        }}
       />
     ))
     setViews(prevState => ({ ...prevState, users: tmp }))
   }, [users])
 
   useEffect(() => {
-    console.log(posts, "----")
     const tmp = posts.map((post, idx) => (
       <PostDisplay
         name={post.user.name}
@@ -40,6 +50,9 @@ const SearchView = ({ users, posts }) => {
         text={post.text}
         title={post.title}
         key={idx}
+        thisUserId={post.user.id}
+        postId={post.id}
+        refetch={refetch}
       />
     ))
     setViews(prevState => ({ ...prevState, posts: tmp }))

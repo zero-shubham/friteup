@@ -1,20 +1,30 @@
 @import "../../styles/main.scss";
 @import "../../styles/variables.scss";
 .body {
-  background-image: url("../../images/intro.jpg");
-  background-size: contain;
+  background-image: url("../../images/intro-large.jpg");
+  background-size: cover;
   height: 100vh;
   display: flex;
   flex-direction: column;
+  @include respond(big-desk){
+    background-image: url("../../images/intro-larger.jpg");
+  }
+  @include respond(tab-land){
+    background-image: url("../../images/intro-medium.jpg");
+  }
+  @include respond(tab-port){
+    background-image: url("../../images/intro-small.jpg");
+  }
 }
 
 .banner {
   font-size: 5rem;
-  color: white;
+  color: $color-primary;
   user-select: none;
+  font-weight: lighter;
 }
 .subHeading {
-  color: white;
+  color: $color-primary;
   font-size: 2rem;
   user-select: none;
 }
@@ -35,11 +45,13 @@
   justify-self: center;
 
   position: absolute;
-  top: 45%;
+  top: 35%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+
+
 }
 
 .bottomSection {
@@ -50,7 +62,8 @@
   bottom: 1px;
   word-spacing: 0.5rem;
   user-select: none;
-  color: $color-primary;
+  color: black;
+  font-weight: bold;
   font-size: 2rem;
   display: flex;
   align-items: center;
@@ -58,4 +71,13 @@
 }
 .icon {
   margin: 0 0.8rem;
+}
+
+.link {
+  text-emphasis: none;
+  text-decoration: none;
+  color: black;
+  margin-left: .5rem;
+  border-bottom: 3px solid $color-primary;
+  line-height: 2rem;
 }

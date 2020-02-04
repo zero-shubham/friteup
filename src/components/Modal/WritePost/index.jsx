@@ -5,7 +5,7 @@ import Button from "@material-ui/core/Button"
 import Switch from "@material-ui/core/Switch"
 import FormControlLabel from "@material-ui/core/FormControlLabel"
 import { useMutation } from "@apollo/react-hooks"
-import { USER, USER_WITH_POST } from "../../../services/queries"
+import { USER_WITH_POST, FEED } from "../../../services/queries"
 import { CREATE_POST } from "../../../services/mutations"
 import Loading from "../../Loading"
 import { Context } from "../../../pages/app"
@@ -41,6 +41,9 @@ const WritePost = ({ open, handleClose }) => {
               query: USER_WITH_POST,
               variables: { user_id: userId },
             },
+            {
+              query: FEED
+            }
           ],
         })
         if (response.data.create_post && response.data.create_post.id) {

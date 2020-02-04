@@ -4,6 +4,7 @@ import PrivateRoute from "../components/PrivateRoute"
 import Layout from "../components/Layout"
 import SEO from "../components/seo"
 import Snackbar from "../components/Snackbar"
+import FeedView from "../components/FeedView"
 import Loading from "../components/Loading"
 import "../styles/main.scss"
 
@@ -15,6 +16,7 @@ const RenderApp = ({ userId }) => {
     type: "",
     show: false,
   })
+  const [view, setView] = useState(<FeedView/>)
   const [rootLoading, setRootLoading] = useState(false)
 
   const resetRootSnackbar = () => {
@@ -24,7 +26,7 @@ const RenderApp = ({ userId }) => {
       show: false,
     })
   }
-  const [view, setView] = useState()
+  
   return (
     <Context.Provider
       value={{ userId, setRootSnakbar, setView, setRootLoading }}
@@ -34,7 +36,7 @@ const RenderApp = ({ userId }) => {
 
         <Loading
           loading={rootLoading}
-          parentClassName={rootLoading ? "rootLoader" : ""}
+          parentClassName={rootLoading ? "rootLoader" : "adjustView"}
         >
           {view}
         </Loading>

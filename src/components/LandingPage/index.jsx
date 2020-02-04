@@ -34,7 +34,13 @@ const LandingPage = () => {
       </div>
       <div className={styles.bottomSection}>
         Made with a <LaptopIcon fontSize="large" className={styles.icon} /> by
-        Shubham Biswas
+        <a
+          href="http://shubhambiswas.com"
+          target="_blank"
+          className={styles.link}
+        >
+          Shubham Biswas
+        </a>
       </div>
     </div>
   )

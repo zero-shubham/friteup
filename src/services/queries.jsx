@@ -17,6 +17,8 @@ export const USER = gql`
       email
       night_mode
       bio
+      subscribers
+      subscribed
     }
   }
 `
@@ -28,9 +30,8 @@ export const USERS = gql`
       name
       email
       bio
-      subscribers {
-        id
-      }
+      subscribers
+      subscribed
     }
   }
 `
@@ -43,14 +44,13 @@ export const USER_WITH_POST = gql`
       email
       night_mode
       bio
-      subscribers {
-        id
-      }
+      subscribers
+      subscribed
       posts {
         id
         text
         title
-        createdAt
+        created_at
         up_vote
         down_vote
         comments {
@@ -73,9 +73,7 @@ export const SEARCH = gql`
         name
         email
         bio
-        subscribers {
-          id
-        }
+        subscribers
       }
       posts {
         id
@@ -83,14 +81,30 @@ export const SEARCH = gql`
           id
           name
           bio
-          subscribers {
-            id
-          }
+          subscribers
         }
         text
         title
         up_vote
         down_vote
+      }
+    }
+  }
+`
+
+export const FEED = gql`
+  query Feed {
+    feed {
+      id
+      title
+      text
+      created_at
+      up_vote
+      down_vote
+      user {
+        name
+        id
+        subscribers
       }
     }
   }
