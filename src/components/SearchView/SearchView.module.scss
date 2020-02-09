@@ -16,8 +16,9 @@
   width: 50%;
   align-self: center;
   justify-self: center;
-
-  :global .MuiButtonBase-root{
+}
+.darkTabBar {
+  :global .MuiButtonBase-root {
     background-color: #cacaca !important;
   }
 }

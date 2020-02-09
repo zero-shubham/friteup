@@ -62,7 +62,12 @@ const SearchView = ({ users, posts, refetch }) => {
 
   return (
     <div className={darkMode ? `${styles.body} ${styles.dark}` : styles.body}>
-      <Paper className={styles.tabBar} square>
+      <Paper
+        className={
+          darkMode ? `${styles.darkTabBar} ${styles.tabBar}` : styles.tabBar
+        }
+        square
+      >
         <Tabs
           indicatorColor="primary"
           textColor="primary"

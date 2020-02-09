@@ -2,8 +2,6 @@ import React from "react"
 import Signup from "../components/Signup"
 import SEO from "../components/seo"
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles"
-import { client } from "../apollo/client"
-import { ApolloProvider } from "@apollo/react-hooks"
 import "../styles/main.scss"
 
 const SignInPage = () => {
