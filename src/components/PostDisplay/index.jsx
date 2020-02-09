@@ -32,7 +32,7 @@ const PostDisplay = ({
   postId,
 }) => {
   const context = useContext(Context)
-  const darkMode = context.darkMode
+  const darkMode = context && context.darkMode
 
   const [modalOpen, setModalOpen] = useState(false)
   const resetModalOpen = () => {

@@ -9,10 +9,10 @@ import styles from "./FeedView.module.scss"
 
 const FeedView = () => {
   const context = useContext(Context)
-  const setRootSnakbar = context.setRootSnakbar
-  const darkMode = context.darkMode
+  const setRootSnakbar = context && context.setRootSnakbar
+  const darkMode = context && scontext.darkMode
   const { data, loading, error } = useQuery(FEED, {
-    pollInterval: 3600
+    pollInterval: 3600,
   })
   const [renderPosts, setRenderPosts] = useState()
   useEffect(() => {
@@ -45,7 +45,11 @@ const FeedView = () => {
   }, [data])
 
   return (
-    <Paper className={darkMode ? `${styles.container} ${styles.dark}` : styles.container}>
+    <Paper
+      className={
+        darkMode ? `${styles.container} ${styles.dark}` : styles.container
+      }
+    >
       <Loading loading={loading}>
         <div>{renderPosts}</div>
       </Loading>

@@ -22,7 +22,7 @@ import logoutSvg from "../../images/logout.svg"
 const Sidebar = ({ name }) => {
   const context = useContext(Context)
   const userId = context ? context.userId : ""
-  const setView = context.setView
+  const setView = context ? context.setView : ""
   const [logout, logoutMutationObj] = useMutation(LOGOUT)
   const [modalState, setModalState] = useState({
     WritePost: false,

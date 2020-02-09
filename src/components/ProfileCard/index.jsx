@@ -50,11 +50,11 @@ const ProfileCard = ({
   onClick,
 }) => {
   const context = useContext(Context)
-  const darkMode = context.darkMode
+  const darkMode = context && context.darkMode
   const searchContext = useContext(SearchContext)
   const searchRefetch = searchContext ? searchContext.refetch : null
 
-  const userId = context.userId
+  const userId = context && context.userId
   const classes = useStyles()
   const [subscribeUser, subscribeUserMutaionObj] = useMutation(SUBSCRIBE, {
     variables: {

@@ -10,9 +10,9 @@ import styles from "./SearchView.module.scss"
 
 const SearchView = ({ users, posts, refetch }) => {
   const context = useContext(Context)
-  const userId = context.userId
-  const setView = context.setView
-  const darkMode = context.darkMode
+  const userId = context && context.userId
+  const setView = context && context.setView
+  const darkMode = context && context.darkMode
 
   const [tabState, setState] = useState("users")
   const [views, setViews] = useState({

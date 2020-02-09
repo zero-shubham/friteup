@@ -9,8 +9,8 @@ import styles from "./ProfileView.module.scss"
 
 const ProfileView = ({ userId }) => {
   const context = useContext(Context)
-  const currentUserId = context.userId
-  const darkMode = context.darkMode
+  const currentUserId = context && context.userId
+  const darkMode = context && context.darkMode
 
   const [postsRender, setPostsRender] = useState()
   const { data, loading, error } = useQuery(USER_WITH_POST, {

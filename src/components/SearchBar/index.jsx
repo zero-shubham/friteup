@@ -9,9 +9,9 @@ import searchSvg from "../../images/search.svg"
 export const SearchContext = createContext()
 const SearchBar = ({darkMode}) => {
   const context = useContext(Context)
-  const setView = context.setView
-  const setRootLoading = context.setRootLoading
-  const setRootSnakbar = context.setRootSnakbar
+  const setView = context && context.setView
+  const setRootLoading = context && context.setRootLoading
+  const setRootSnakbar = context && context.setRootSnakbar
   const [value, setValue] = useState("")
   const [lastKeyword, setLastKeyword] = useState("")
   const [search, searchQueryObj] = useLazyQuery(SEARCH, {

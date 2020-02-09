@@ -11,9 +11,9 @@ import styles from "./SubscribedList.module.scss"
 
 const SubscribedList = ({ open, handleClose }) => {
   const context = useContext(Context)
-  const userId = context.userId
-  const setView = context.setView
-  const darkMode = context.darkMode
+  const userId = context && context.userId
+  const setView = context && context.setView
+  const darkMode = context && context.darkMode
 
   const [subscribedUsers, setSubscribedUsers] = useState([])
   const [renderList, setRenderList] = useState([])

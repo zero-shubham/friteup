@@ -14,9 +14,9 @@ import styles from "./writePost.module.scss"
 
 const WritePost = ({ open, handleClose }) => {
   const context = useContext(Context)
-  const userId = context.userId
-  const darkMode = context.darkMode
-  const setSnackbar = context.setRootSnakbar
+  const userId = context && context.userId
+  const darkMode = context && context.darkMode
+  const setSnackbar = context && context.setRootSnakbar
   const [createPost, createPostMutationObj] = useMutation(CREATE_POST)
   const [postText, setPostText] = useState("")
   const [postTitle, setPostTitle] = useState("")

@@ -20,8 +20,8 @@ const ReadMore = ({
   postId,
 }) => {
   const context = useContext(Context)
-  const setView = context.setView
-  const userId = context.userId
+  const setView = context && context.setView
+  const userId = context && context.userId
 
   return (
     <Modal open={open} onClose={handleClose} className={modalStyles.modal}>

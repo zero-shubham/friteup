@@ -23,9 +23,9 @@ import styles from "./accountSettings.module.scss"
 // todo: error message handling
 const AccountSettings = ({ open, handleClose }) => {
   const context = useContext(Context)
-  const userId = context.userId
-  const setSnackbar = context.setRootSnakbar
-  const darkMode = context.darkMode
+  const userId = context && context.userId
+  const setSnackbar = context && context.setRootSnakbar
+  const darkMode = context && context.darkMode
 
   const { data, loading, error, refetch } = useQuery(USER, {
     variables: { user_id: userId },

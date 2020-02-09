@@ -23,7 +23,7 @@ const Vote = ({
   const searchContext = useContext(SearchContext)
   const searchRefetch = searchContext ? searchContext.refetch : null
 
-  const userId = context.userId
+  const userId = context && context.userId
   const [voteType, setVoteType] = useState()
   const [votePostMutation, votePostMutationObj] = useMutation(VOTE_POST)
   const submitUpvote = () => {
