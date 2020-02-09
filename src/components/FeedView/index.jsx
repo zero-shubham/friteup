@@ -10,7 +10,7 @@ import styles from "./FeedView.module.scss"
 const FeedView = () => {
   const context = useContext(Context)
   const setRootSnakbar = context && context.setRootSnakbar
-  const darkMode = context && scontext.darkMode
+  const darkMode = context && context.darkMode
   const { data, loading, error } = useQuery(FEED, {
     pollInterval: 3600,
   })
