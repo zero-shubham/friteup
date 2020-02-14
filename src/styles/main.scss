@@ -1,8 +1,23 @@
 @import url("https://fonts.googleapis.com/css?family=Caveat:400,700&display=swap&subset=latin-ext");
 @import url("https://fonts.googleapis.com/css?family=Titillium+Web:400,400i,600,600i&display=swap");
+@import "./variables.scss";
+
 html {
   font-family: "Caveat", cursive;
   font-size: 62.5% !important;
+  @include respond(tab-land) {
+    font-size: 56.25% !important;
+  }
+  @include respond(tab-port) {
+    font-size: 50% !important;
+  }
+  @include respond(phone) {
+    font-size: 30% !important;
+  }
+
+  @include respond(big-desk) {
+    font-size: 75% !important;
+  }
 }
 
 body {

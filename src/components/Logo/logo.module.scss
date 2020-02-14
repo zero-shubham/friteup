@@ -18,6 +18,9 @@
 }
 .large {
   font-size: 5rem;
+  @include respond(tab-port) {
+    font-size: 6rem;
+  }
 }
 
 .small {

@@ -1,11 +1,17 @@
-.body{
+@import "../../../../styles/variables.scss";
+
+.body {
   position: relative;
   font-size: 5rem;
 }
-.close, .done {
+.close,
+.done {
   font-size: 2.5rem !important;
   font-weight: bold !important;
   cursor: pointer;
+  @include respond(tab-port) {
+    font-size: 3.5rem !important;
+  }
 }
 
 .edit {
@@ -14,18 +20,35 @@
   position: absolute;
   right: 1rem;
   top: 2rem;
+
+  @include respond(tab-port) {
+    font-size: 3rem !important;
+    top: 4rem;
+  }
 }
 
 .textField {
   font-size: 2rem;
   :global .MuiInputBase-input {
     font-size: 2rem;
+    @include respond(tab-port) {
+      font-size: 3rem;
+    }
   }
   :global .MuiFormHelperText-root {
     font-size: 2rem;
+    @include respond(tab-port) {
+      font-size: 3rem;
+    }
   }
   :global .MuiFormLabel-root {
     font-size: 2rem;
+    @include respond(tab-port) {
+      font-size: 3rem;
+    }
+  }
+  @include respond(tab-port) {
+    font-size: 3rem;
   }
 }
 
@@ -38,4 +61,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @include respond(tab-port) {
+    top: 3.5rem;
+    width: 8rem;
+  }
 }

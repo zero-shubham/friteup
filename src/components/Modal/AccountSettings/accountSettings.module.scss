@@ -1,3 +1,5 @@
+@import "../../../styles/variables.scss";
+
 .body {
   background-color: white;
   min-height: 46rem;
@@ -5,7 +7,10 @@
   outline: none;
   display: flex;
   flex-direction: column;
-
+  @include respond(tab-port) {
+    min-height: 90vh;
+    min-width: 90vw;
+  }
   :global .MuiTextField-root{
     width: 100%;
   }
@@ -20,6 +25,15 @@
   display: flex;
   flex-direction: column;
 
+  @include respond(tab-port) {
+    height: 60rem;
+  }
+
+  & > div {
+    @include respond(tab-port) {
+      margin-bottom: 4rem;
+    }
+  }
   :global .MuiFormControlLabel-labelPlacementStart {
     margin-left: 0;
     margin-right: 0;

@@ -6,13 +6,13 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  @include respond(big-desk){
+  @include respond(big-desk) {
     background-image: url("../../images/intro-larger.jpg");
   }
-  @include respond(tab-land){
+  @include respond(tab-land) {
     background-image: url("../../images/intro-medium.jpg");
   }
-  @include respond(tab-port){
+  @include respond(tab-port) {
     background-image: url("../../images/intro-small.jpg");
   }
 }
@@ -27,11 +27,18 @@
   color: $color-primary;
   font-size: 2rem;
   user-select: none;
+
+  @include respond(tab-port) {
+    font-size: 3rem;
+  }
 }
 
 .btn {
   font-size: 2rem !important;
   margin-right: 2rem;
+  @include respond(tab-port) {
+    font-size: 3rem !important;
+  }
 }
 
 .topSection {
@@ -50,8 +57,6 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-
-
 }
 
 .bottomSection {
@@ -68,6 +73,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  @include respond(tab-port) {
+    font-size: 3rem;
+    word-spacing: 0.6rem;
+  }
 }
 .icon {
   margin: 0 0.8rem;
@@ -77,7 +86,12 @@
   text-emphasis: none;
   text-decoration: none;
   color: black;
-  margin-left: .5rem;
+  margin-left: 0.5rem;
   border-bottom: 3px solid $color-primary;
   line-height: 2rem;
+  @include respond(tab-port) {
+    line-height: 3rem;
+    border-bottom: 2px solid $color-primary;
+    margin-left: 1rem;
+  }
 }

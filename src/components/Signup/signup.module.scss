@@ -1,3 +1,5 @@
+@import "../../styles/variables.scss";
+
 @keyframes hide {
   from {
     opacity: 1;
@@ -25,12 +27,30 @@
   }
 }
 
+@keyframes shiftUpM {
+  from {
+    transform: translateY(20px);
+  }
+  to {
+    transform: translateY(-15px);
+  }
+}
+
 @keyframes shiftDown {
   from {
     transform: translateY(-65px);
   }
   to {
     transform: translateY(0px);
+  }
+}
+
+@keyframes shiftDownM {
+  from {
+    transform: translateY(-15px);
+  }
+  to {
+    transform: translateY(20px);
   }
 }
 
@@ -44,6 +64,9 @@
 .content {
   display: flex;
   margin-top: 8rem;
+  @include respond(tab-port) {
+    flex-direction: column;
+  }
 }
 
 .leftSection,
@@ -51,6 +74,13 @@
   width: 100%;
 }
 
+.leftSection {
+  @include respond(tab-port) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
 .rightSection {
   display: flex;
   flex-direction: column;
@@ -63,17 +93,27 @@
 
 .image {
   width: 90%;
+  @include respond(tab-port){
+    width: 50%;
+  }
 }
 
 .SignUpbtn {
   font-size: 3rem;
   margin-bottom: 1rem;
+  @include respond(tab-port){
+    font-size: 4rem;
+  }
 }
 
 .SignInBtn {
   font-size: 2rem;
   margin-top: 0.5rem;
   padding: 0.3rem 0.8rem;
+
+  @include respond(tab-port){
+    font-size: 3rem;
+  }
 }
 
 .inputComp {
@@ -84,12 +124,24 @@
   font-size: 2rem;
   :global .MuiInputBase-input {
     font-size: 2rem;
+    @include respond(tab-port){
+      font-size: 3rem;
+    }
   }
   :global .MuiFormHelperText-root {
     font-size: 2rem;
+    @include respond(tab-port){
+      font-size: 3rem;
+    }
   }
   :global .MuiFormLabel-root {
     font-size: 2rem;
+    @include respond(tab-port){
+      font-size: 3rem;
+    }
+  }
+  @include respond(tab-port){
+    font-size: 3rem;
   }
 }
 
@@ -110,9 +162,17 @@
 }
 
 .shiftUp {
+  @include respond(tab-port) {
+    animation: shiftUpM 0.5s 0.1s forwards;
+  }
   animation: shiftUp 0.5s 0.1s forwards;
+  
 }
 
 .shiftDown {
+  @include respond(tab-port) {
+    animation: shiftDownM 0.5s 0.1s forwards;
+  }
   animation: shiftDown 0.5s forwards;
+  
 }
